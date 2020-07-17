@@ -2,7 +2,6 @@ package com.configurable;
 
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
-import jdk.internal.jline.internal.Nullable;
 
 import java.io.*;
 import java.lang.annotation.Annotation;
@@ -103,7 +102,7 @@ public class Configuration {
      * @param file A Json file to be parsed
      * @return A Configuration instance from the specified File
      */
-    public static Configuration read(@Nullable final File file) {
+    public static Configuration read(final File file) {
         return read(new Configuration(), file);
     }
 
@@ -119,11 +118,11 @@ public class Configuration {
      * @param file The file to load and parse
      * @return A Configuration objects of the supplied type populated from the specified file
      */
-    protected static <A extends Configuration> A read(final Supplier<A> supplier, @Nullable final File file) {
+    protected static <A extends Configuration> A read(final Supplier<A> supplier, final File file) {
         Objects.requireNonNull(supplier);
         return Configuration.read(supplier.get(), file);
     }
-    private static <A extends Configuration> A read(final A configuration, @Nullable final File file) {
+    private static <A extends Configuration> A read(final A configuration, final File file) {
         Objects.requireNonNull(configuration);
 
         JsonObject object;
@@ -142,7 +141,7 @@ public class Configuration {
         return Configuration.read(configuration, object);
     }
 
-    private static JsonObject parse(@Nullable final File file) throws IOException {
+    private static JsonObject parse(final File file) throws IOException {
         if (file == null) {
             return new JsonObject();
         }
