@@ -107,6 +107,18 @@ public class Configuration {
         return read(new Configuration(), file);
     }
 
+    /**
+     * Obtains a Configuration instance from the specified supplier. Then loads and parses the specified file
+     * into the supplied Configuration instance, populating any available fields annotated with {@link Property} with
+     * values from the parsed file.
+     *
+     * This method is indented to be called from a subclass which defines one or more fields tracking configuration
+     * properties.
+     *
+     * @param supplier Function that supplies an Configuration object to populate
+     * @param file The file to load and parse
+     * @return A Configuration objects of the supplied type populated from the specified file
+     */
     protected static <A extends Configuration> A read(final Supplier<A> supplier, @Nullable final File file) {
         Objects.requireNonNull(supplier);
         return Configuration.read(supplier.get(), file);
@@ -180,6 +192,12 @@ public class Configuration {
         return configuration;
     }
 
+    /**
+     *  Writes this Configuration object to the specified file in Json format.
+     *
+     * @param file The file to write to
+     * @return this
+     */
     public final <A extends Configuration>  A write(final File file) {
         if (file == null) {
             return (A) this;
