@@ -160,7 +160,7 @@ public class Configuration {
         Objects.requireNonNull(object);
 
         final List<Field> fields = getDeclaredFields(configuration.getClass()).stream()
-                .filter(configuration::isPropertyField)
+                .filter(field -> configuration.isPropertyField(field))
                 .collect(Collectors.toList())
         ;
         for (final Field field : fields) {
