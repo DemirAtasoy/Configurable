@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'com.configurable'
-version '0.1.3'
+version '0.1.4'
 
 sourceCompatibility = 1.8
 
